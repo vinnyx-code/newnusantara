@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nusantara Travel | Jelajahi Keindahan Alam dan Budaya Indonesia</title>
+    <link rel="stylesheet" href="css/ss.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Kaushan+Script&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --nav-height: 76px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-decoration: none;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(#000000, #000277, #005eff, #009dff, #64b7ff, #62e0ff);
+            /* no extra top padding — navbar will be in flow and stick to top */
+            padding-top: 0;
+        }
+
+        .cont-nav {
+            display: flex;
+            gap: 100px;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.669);
+            /* use sticky so the nav sits in normal flow then sticks to top */
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 99999;
+            /* keep navbar on top */
+        }
+
+        .cont-nav.nav {
+            margin-right: 200px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 50px;
+        }
+
+        .nama-web {
+            font-family: 'Chewy', cursive;
+            font-size: 1.5em;
+            color: rgb(0, 0, 0);
+        }
+
+        .nav a {
+            text-decoration: none;
+            right: 35px;
+            color: rgb(0, 0, 0);
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #0077ff;
+        }
+
+        .setting {
+            /* position inside the nav so it stays aligned with it */
+            position: absolute;
+            right: 20px;
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            /* vertically center inside nav */
+            gap: 10px;
+            z-index: 100000;
+            /* ensure setting controls appear above other content */
+            pointer-events: auto;
+        }
+
+        /* dropdown styles */
+        .menu-button {
+            background: transparent;
+            border: none;
+            color: rgb(0, 0, 0);
+            font-size: 1.4em;
+            cursor: pointer;
+            padding: 6px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 110%;
+            background: rgb(255, 255, 255, 0.800);
+            min-width: 160px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 6px;
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 14px;
+            color: #000000;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .dropdown-menu a:hover {
+            background: #ffffff;
+            color: #116ad1;
+        }
+
+        /* three vertical dots icon styling */
+        .dots-vertical {
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* small gear icon */
+        .gear {
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .gear path:hover {
+            fill: rgb(2, 113, 249);
+        }
+
+        /* keep banner and cards below the navbar in stacking order */
+        .photo-card,
+        section.container,
+        .populer-package {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Photo card styles */
+        .photo-card {
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .photo-card .img-cover {
+            height: 260px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-overlay {
+            background-color: white;
+            color: black;
+        }
+
+        .card-title {
+            font-weight: 700;
+        }
+
+        /* make the overlap modest so cards don't go under the navbar */
+        #card-c {
+            margin-top: -36px;
+        }
+
+        /* ensure when scrolling or linking the category section it appears below the fixed navbar */
+        section.container {
+            scroll-margin-top: calc(var(--nav-height) + 12px);
+        }
+
+        @media (max-width: 767px) {
+            .photo-card .img-cover {
+                height: 200px;
+            }
+
+            #card-c {
+                margin-top: -30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cont-nav">
+        <div class="logo">
+            <img src="asset/img/NusanTT.png" alt="Nusantara Travel Logo" width="150px" height="80px">
+        </div>
+        <div class="nama-web">
+            <h2>Nusantara Travel</h2>
+        </div>
+        <div class="nav">
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="destination.html">Destination</a>
+                <a href="contact.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+        </div>
+        <div class="setting">
+            <div class="nav-line">
+                <!-- three-vertical-dots dropdown for additional navigation -->
+                <div class="dropdown">
+                    <button class="menu-button" aria-haspopup="true" aria-expanded="false" id="navDotsBtn" title="More">
+                        <!-- simple vertical dots using inline SVG -->
+                        <svg class="dots-vertical" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="5" r="1.8" fill="black"></circle>
+                            <circle cx="12" cy="12" r="1.8" fill="black"></circle>
+                            <circle cx="12" cy="19" r="1.8" fill="black"></circle>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="navDotsBtn" id="navDotsMenu">
+                        <a href="package.html">Package</a>
+                        <a href="purchase.html">Purchase</a>
+                        <a href="voucher.html">Voucher</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ntt-account">
+                <!-- settings gear with dropdown for account actions -->
+                <div class="dropdown">
+                    <button class="menu-button" aria-haspopup="true" aria-expanded="false" id="settingsBtn"
+                        title="Settings">
+                        <svg class="gear" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="black"
+                                d="M19.14,12.94a7.14,7.14,0,0,0,0-1.88l2.11-1.65a.5.5,0,0,0,.12-.64l-2-3.46a.5.5,0,0,0-.6-.22l-2.49,1a7.28,7.28,0,0,0-1.6-.93L14.5,2.5a.5.5,0,0,0-.5-.5H10a.5.5,0,0,0-.5.5L9,4.37a7.28,7.28,0,0,0-1.6.93l-2.49-1a.5.5,0,0,0-.6.22l-2,3.46a.5.5,0,0,0,.12.64L4.86,11a7.14,7.14,0,0,0,0,1.88L2.75,14.53a.5.5,0,0,0-.12.64l2,3.46a.5.5,0,0,0,.6.22l2.49-1a7.28,7.28,0,0,0,1.6.93L9.5,21.5a.5.5,0,0,0,.5.5h4a.5.5,0,0,0,.5-.5l.5-2.37a7.28,7.28,0,0,0,1.6-.93l2.49,1a.5.5,0,0,0,.6-.22l2-3.46a.5.5,0,0,0-.12-.64ZM12,15.5A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="settingsBtn" id="settingsMenu">
+                        <a href="sign-in.html">Sign In</a>
+                        <a href="log-in.html">Log In</a>
+                        <a href="contact.html">Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Banner Slider Fix (Push Effect) ===== -->
+    <div class="cont-slide">
+        <div class="slide active">
+            <img src="asset/img/Banner/banner 1.png" alt="Banner 1">
+            <div class="content">
+                <h3>Selamat Datang di Nusantara Travel</h3>
+                <p>Jelajahi keindahan alam Indonesia bersama kami! Dari ujung barat hingga timur, setiap sudut Nusantara
+                    menyimpan keajaiban yang menunggu untuk kamu temukan.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="asset/img/Banner/banner 2.png" alt="Banner 2">
+            <div class="content">
+                <h3>Destinasi Eksotis</h3>
+                <p>Dari Raja Ampat dengan lautnya yang jernih hingga Bromo dengan sunrise legendarisnya, Nusantara
+                    Travel siap membawa kamu ke pengalaman luar biasa di setiap perjalanan.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="asset/img/Banner/banner.png" alt="Banner 3">
+            <div class="content">
+                <h3>Petualangan Tak Terlupakan</h3>
+                <p>Temukan sensasi petualangan sejati! Menyelam di Labuan Bajo, mendaki Bromo, atau menikmati budaya
+                    Bali — setiap langkah penuh cerita dan keindahan.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="asset/img/Nusantara Travel.jpg" alt="Banner 4">
+            <div class="content">
+                <h3>Keindahan Budaya dan Alam Indonesia</h3>
+                <p>Dari tarian tradisional Bali hingga panorama hijau Toba, setiap tempat menawarkan harmoni budaya dan
+                    alam yang memikat hati para pelancong.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="asset/img/Banner/banner voucher.png" alt="Banner 5">
+            <div class="content">
+                <h3>Promo Spesial untuk Petualang Nusantara</h3>
+                <p>Nikmati berbagai penawaran menarik untuk perjalanan impianmu! Wujudkan liburan tak terlupakan dengan
+                    harga terbaik bersama Nusantara Travel.</p>
+            </div>
+        </div>
+
+        <!-- Tombol navigasi -->
+        <button class="turn prev">❮</button>
+        <button class="turn next">❯</button>
+
+        <!-- Titik indikator -->
+        <div class="dot-container">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Category -->
+    <section id="kategori" class="container mt-5 pt-4">
+        <h2 class="title">Kategori Wisata</h2>
+        <div class="row gx-4 gy-4 align-items-stretch" id="card-c">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card photo-card h-100 shadow-sm">
+                    <a href="kategori.html">
+                        <div class="card-img-top img-cover" style="background-image:url('asset/img/foto-1.jpg');"></div>
+                    </a>
+                    <div class="card-body d-flex align-items-end p-0">
+                        <div class="card-overlay p-3 w-100">
+                            <h5 class="card-title mb-1" style="color: rgb(4, 0, 88);">Sejarah dan Budaya</h5>
+                            <h5 class="card-title mb-1" style="color: rgb(4, 0, 88);">[History and Culture]</h5>
+                            <p class="card-text small">
+                                Jelajahi kekayaan sejarah dan budaya Indonesia melalui destinasi bersejarah seperti
+                                Candi Borobudur dan Keraton Yogyakarta.
+                                Rasakan keagungan masa lalu yang berpadu dengan keramahan lokal dan tradisi yang masih
+                                hidup hingga kini.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card photo-card h-100 shadow-sm">
+                    <a href="kategori.html">
+                        <div class="card-img-top img-cover" style="background-image:url('asset/img/foto-2.jpg');"></div>
+                    </a>
+                    <div class="card-body d-flex align-items-end p-0">
+                        <div class="card-overlay p-3 w-100">
+                            <h5 class="card-title mb-1" style="color: rgb(4, 0, 88);">Alam</h5>
+                            <h5 class="card-title mb-1" style="color: rgb(4, 0, 88);">[Nature]</h5>
+                            <p class="card-text small">
+                                Nikmati pesona alam Indonesia yang menakjubkan.
+                                Dari keindahan sunrise di Gunung Bromo, udara segar di pegunungan Dieng,
+                                hingga kejernihan air Danau Toba dan pesona laut Bunaken.
+                                Setiap destinasi menawarkan ketenangan dan keindahan yang memanjakan mata.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card photo-card h-100 shadow-sm">
+                    <a href="kategori.html">
+                        <div class="card-img-top img-cover" style="background-image:url('asset/img/foto.jpg');"></div>
+                    </a>
+                    <div class="card-body d-flex align-items-end p-0">
+                        <div class="card-overlay p-3 w-100">
+                            <h5 class="card-title mb-1" style="color: rgb(4, 0, 88);">Khusus</h5>
+                            <h5 class="card-title mb-1" style="color: rgb(4, 0, 88);">[Special Interest]</h5>
+                            <p class="card-text small">
+                                Bagi kamu pencinta petualangan dan pengalaman unik, kategori ini menghadirkan aktivitas
+                                spesial seperti diving di Raja Ampat,
+                                mendaki gunung Rinjani, hingga menjelajahi gua tersembunyi di Sulawesi.
+                                Wujudkan hasrat eksplorasimu bersama Nusantara Travel.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POPULER SECTION -->
+    <h2 id="populer" class="title">Destinasi Populer</h2>
+    <div class="populer-package">
+        <button class="n-prev">❮</button>
+
+        <div class="populer-c">
+            <div class="populer-slide">
+                <img class="image" src="asset/img/foto.jpg" alt="Kota Tua">
+                <div class="caption">
+                    <h3>Kota Tua, Jakarta</h3>
+                    <p>Rasakan pesona sejarah di Kota Tua, Jakarta. Dengan bangunan bersejarah dan museum yang menarik,
+                        kawasan ini mengajakmu untuk menjelajahi jejak-jejak masa lalu.</p>
+                </div>
+            </div>
+
+            <div class="populer-slide">
+                <img class="image" src="asset/img/sejarah dan budaya/papua.jpg" alt="Papua">
+                <div class="caption">
+                    <h3>Keajaiban Papua</h3>
+                    <p>Menjelajahi Papua bagaikan memasuki dunia yang masih perawan. Dari lembah Baliem hingga laut biru
+                        Raja Ampat, keindahan alam dan budayanya sungguh tiada duanya.</p>
+                </div>
+            </div>
+
+            <div class="populer-slide">
+                <img class="image" src="asset/img/kota/palembangg.jpg" alt="Palembang">
+                <div class="caption">
+                    <h3>Palembang, Kota Sejarah</h3>
+                    <p>Nikmati pesona Sungai Musi dan kemegahan Jembatan Ampera di Palembang. Jangan lupa mencicipi
+                        pempek khas kota ini yang terkenal hingga ke seluruh Nusantara.</p>
+                </div>
+            </div>
+
+            <div class="populer-slide">
+                <img class="image" src="asset/img/alam/bali.jpg" alt="Bali">
+                <div class="caption">
+                    <h3>Bali, Pulau Dewata</h3>
+                    <p>Pulau seribu pura ini selalu memikat hati. Dari pantai Kuta hingga Ubud yang tenang, Bali
+                        menghadirkan harmoni sempurna antara budaya, alam, dan spiritualitas.</p>
+                </div>
+            </div>
+
+            <div class="populer-slide">
+                <img class="image" src="asset/img/kota/tugu yogya.jpg" alt="Yogyakarta">
+                <div class="caption">
+                    <h3>Yogyakarta, Jiwa Jawa</h3>
+                    <p>Jelajahi kota penuh makna budaya dan tradisi. Dari Keraton, Malioboro, hingga kuliner gudeg yang
+                        legendaris — Yogyakarta selalu menyambutmu dengan kehangatan.</p>
+                </div>
+            </div>
+
+            <div class="populer-slide">
+                <img class="image" src="asset/img/kota/bandung.jpg" alt="Bandung">
+                <div class="caption">
+                    <h3>Bandung, Kota Kembang</h3>
+                    <p>Udara sejuk dan keindahan alam Lembang hingga Ciwidey menjadikan Bandung destinasi favorit untuk
+                        berlibur. Nikmati juga pesona kulinernya yang tak ada habisnya.</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="n-next">❯</button>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div id="testimonials" class="testimonials">
+        <div class="buble-respon">
+            <h2 class="title">Testimoni Wisatawan</h2>
+            <div class="testi-c">
+                <div class="testi-slide">
+                    <p>"Perjalanan saya ke Bali bersama Nusantara Travel sungguh luar biasa! Semua jadwal diatur rapi,
+                        guide-nya ramah, dan hotelnya nyaman. Liburan ini benar-benar menyegarkan jiwa."</p>
+                    <h3>- Andi, Jakarta</h3>
+                </div>
+                <div class="testi-slide">
+                    <p>"Nusantara Travel membantu saya dan keluarga menjelajahi keindahan Yogyakarta tanpa repot. Dari
+                        Borobudur hingga Keraton, semuanya berjalan lancar dan menyenangkan."</p>
+                    <h3>- Siti, Surabaya</h3>
+                </div>
+                <div class="testi-slide">
+                    <p>"Saya memesan paket ke Lombok dan semuanya melebihi ekspektasi! Mulai dari transportasi, hotel,
+                        hingga aktivitas snorkeling di Gili Trawangan, semua sempurna. Terima kasih Nusantara Travel!"
+                    </p>
+                    <h3>- Budi, Bandung</h3>
+                </div>
+            </div>
+
+            <div class="dot-cont-testi"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- About -->
+            <div class="footer-col">
+                <h3>About</h3>
+                <p>
+                    Selamat datang di website kami.
+                    <br />
+                    Apabila website ini mengalami bug atau kesalahan mohon dimaklumi,
+                    dan jika anda memiliki saran atau kritik untuk website ini silahkan
+                    hubungi contact di halaman selanjutnya yang sudah tersedia.
+                </p>
+                <button class="lang-btn">🌐 English</button>
+            </div>
+
+            <!-- Community -->
+            <div class="footer-col">
+                <h3>Community</h3>
+                <a href="#">SahabatAlam</a>
+                <a href="#">NusantaraIT</a>
+                <a href="#">NusantaraTravel</a>
+                <a href="#">Travelingkuy</a>
+                <a href="#">DIGITalks</a>
+                <a href="#">ITguy</a>
+            </div>
+
+            <!-- Our Sites -->
+            <div class="footer-col">
+                <h3>Our Sites</h3>
+                <a href="#">ITalks</a>
+                <a href="#">DIGIForm</a>
+                <a href="index.html">NusantaraTravel</a>
+            </div>
+            <!-- copyright -->
+            <div class="cr">
+                <p>
+                    &copy; 2025 V1procode-Web. Hak cipta dilindungi. Konten di situs ini
+                    tidak boleh disalin tanpa izin tertulis.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+
+        //==== Dropdown Menu ====
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ambil semua tombol dropdown
+            const dropdownButtons = document.querySelectorAll('.menu-button');
+
+            dropdownButtons.forEach(button => {
+                const dropdown = button.closest('.dropdown');
+                const menu = dropdown.querySelector('.dropdown-menu');
+
+                // Klik tombol untuk toggle menu
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+
+                    // Tutup semua dropdown lain dulu
+                    document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+                        if (openMenu !== menu) openMenu.classList.remove('show');
+                    });
+
+                    // Toggle menu ini
+                    menu.classList.toggle('show');
+                });
+            });
+
+            // Klik di luar -> tutup semua menu
+            document.addEventListener('click', () => {
+                document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            });
+        });
+
+
+
+
+        // ==== Populer ===
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.querySelector(".populer-c");
+            const slides = document.querySelectorAll(".populer-slide");
+            const nextBtn = document.querySelector(".n-next");
+            const prevBtn = document.querySelector(".n-prev");
+
+            let cardWidth = slides[0].offsetWidth + 22;
+            let isMoving = false;
+
+            // ==== Fungsi untuk geser ke kanan ====
+            function nextSlide() {
+                if (isMoving) return;
+                isMoving = true;
+
+                container.style.transition = "transform 0.5s";
+                container.style.transform = `translateX(-${cardWidth}px)`;
+
+                setTimeout(() => {
+                    container.appendChild(container.firstElementChild);
+                    container.style.transition = "none";
+                    container.style.transform = "translateX(0)";
+                    isMoving = false;
+                }, 500);
+            }
+
+            // ==== Fungsi untuk geser ke kiri ====
+            function prevSlide() {
+                if (isMoving) return;
+                isMoving = true;
+
+                container.insertBefore(container.lastElementChild, container.firstElementChild);
+
+                container.style.transition = "none";
+                container.style.transform = `translateX(-${cardWidth}px)`;
+
+                setTimeout(() => {
+                    container.style.transition = "transform 0.9s ease";
+                    container.style.transform = "translateX(0)";
+                }, 20);
+
+                setTimeout(() => {
+                    isMoving = false;
+                }, 520);
+            }
+
+            nextBtn.addEventListener("click", nextSlide);
+            prevBtn.addEventListener("click", prevSlide);
+        });
+    </script>
+
+</body>
+<script src="js/script.js"></script>
+<script src="js/banner.js"></script>
+
+</html>

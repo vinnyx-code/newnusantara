@@ -1,0 +1,285 @@
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-decoration: none;
+        }
+
+        body{
+          background: linear-gradient(#000000, #000277, #005eff, #009dff, #64b7ff, #62e0ff);
+        }
+
+        .cont-nav {
+            display: flex;
+            gap: 100px;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.621);
+            /* use sticky so the nav sits in normal flow then sticks to top */
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 99999;
+            /* keep navbar on top */
+        }
+
+        .cont-nav.nav {
+            margin-right: 200px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 50px;
+        }
+
+        .nama-web {
+            font-size: 1.5em;
+            color: rgb(0, 0, 0);
+        }
+
+        .nav a {
+            text-decoration: none;
+            right: 35px;
+            color: rgb(0, 0, 0);
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #0077ff;
+        }
+
+        .setting {
+            /* position inside the nav so it stays aligned with it */
+            position: absolute;
+            right: 20px;
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            /* vertically center inside nav */
+            gap: 10px;
+            z-index: 100000;
+            /* ensure setting controls appear above other content */
+            pointer-events: auto;
+        }
+
+        /* dropdown styles */
+        .menu-button {
+            background: transparent;
+            border: none;
+            color: rgb(0, 0, 0);
+            font-size: 1.4em;
+            cursor: pointer;
+            padding: 6px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 110%;
+            background: rgb(0, 0, 0);
+            min-width: 160px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 6px;
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 14px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .dropdown-menu a:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        /* three vertical dots icon styling */
+        .dots-vertical {
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* small gear icon */
+        .gear {
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .gear path:hover {
+            fill: rgb(2, 113, 249);
+        }
+
+        .cont-ks{
+            margin: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+        }
+        .c-1{
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .c-1 img{
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .c-1:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+.about{
+  padding: 40px;
+  margin: 20px;
+  background-color: #ffffffaf;
+  border-radius: 20px;
+}
+
+.populer-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.populer-card img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.populer-card img:hover {
+  transform: scale(1.4);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Teks */
+.text h2 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.text .sub {
+  color: #ffffff;
+  font-family: 'Kaushan Script', cursive;
+  margin: 5px 0;
+}
+
+.text .body {
+  font-family: 'Chewy Script', cursive;
+  color: #00eeff;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Membalik posisi kiri/kanan */
+.populer-card.left .text {
+  order: 1;
+}
+.populer-card.left img {
+  order: 2;
+}
+.populer-card.right img {
+  order: 1;
+}
+.populer-card.right .text {
+  order: 2;
+}
+.populer-card .text {
+  flex: 1;
+}
+.populer-card .text h2 {
+  margin-bottom: 10px;
+}
+
+
+.footer {
+      background-color: #ffffff60;
+      color: #000000;
+      padding: 40px 30px;
+      margin-top: 20%;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer-container {
+      display: flex;
+      max-width: 950px;
+      margin: auto;
+    }
+
+    .cr {
+      margin-top: 10px;
+      position:absolute;
+      top:285%;
+      padding: 10px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 15px;
+      font-style: italic;
+    }
+    .cr:hover{
+      color: white;
+    }
+
+    .footer-col {
+      flex: 55px;
+      margin: 25px;
+    }
+
+    .footer-col h3 {
+      color: #000000;
+      margin-bottom: 15px;
+    }
+
+    .footer-col p {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #000000;
+      text-decoration: none;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .footer-col a:hover {
+      color: #fff;
+    }
+
+    .lang-btn {
+      margin-top: 10px;
+      padding: 10px 16px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 4px;
+    }
