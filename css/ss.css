@@ -2,7 +2,28 @@
   font-weight: 750;
   margin: 30px 0;
   text-align: center;
-  background: linear-gradient(#48528cb5, #002afd);
+  background: linear-gradient(#fdfdfdcf, #0066ffbb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 32px;
+}
+
+.title2 {
+  font-weight: 750;
+  margin: 30px 0;
+  text-align: center;
+  background: linear-gradient(#000000bb, #0077ffcf);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 32px;
+}
+.title3 {
+  font-weight: 750;
+  margin: 30px 0;
+  text-align: center;
+  background: linear-gradient(#000000cf, #0077ffcf);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
